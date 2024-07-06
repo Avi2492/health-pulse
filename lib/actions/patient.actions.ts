@@ -26,3 +26,13 @@ export const createUser = async (user: CreateUserParams) => {
     throw new Error("User already exists an Error Occured!");
   }
 };
+
+export const getUser = async (userId: string) => {
+  try {
+    const user = await users.get(userId);
+
+    return parseStringify(user);
+  } catch (error: any) {
+    console.log(error.message);
+  }
+};
