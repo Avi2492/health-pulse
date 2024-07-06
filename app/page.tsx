@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <div className="flex h-screen max-h-screen">
       {/* Todo: otp verification/passkey */}
-      <section className="remove-scrollbar container my-auto">
-        <div className="sub-container max-w-[496px]">
+      <section className="remove-scrollbar container">
+        <div className="sub-container max-w-[860px] flex-col flex-1 py-10">
           <Image
             src={"/assets/icons/logo-full.svg"}
             height={1000}
