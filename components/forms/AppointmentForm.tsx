@@ -11,18 +11,9 @@ import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
+import { FormFeildType } from "./PatientForm";
 
-export enum FormFeildType {
-  INPUT = "input",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phoneInput",
-  CHECKBOX = "checkbox",
-  DATE_PICKER = "datepicker",
-  SELECT = "select",
-  SKELETON = "skeleton",
-}
-
-const PatientForm = () => {
+const AppointmentForm = ({ user }: { user: User }) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -67,6 +58,7 @@ const PatientForm = () => {
             <h1 className="header">Hi There 🖐️</h1>
             <p className="text-dark-700">Schedule your first appointment.</p>
           </section>
+
           <CustomFormFeild
             feildType={FormFeildType.INPUT}
             control={form.control}
@@ -76,6 +68,7 @@ const PatientForm = () => {
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
           />
+
           <CustomFormFeild
             feildType={FormFeildType.INPUT}
             control={form.control}
@@ -85,6 +78,7 @@ const PatientForm = () => {
             iconSrc="/assets/icons/email.svg"
             iconAlt="email"
           />
+
           <CustomFormFeild
             feildType={FormFeildType.PHONE_INPUT}
             control={form.control}
@@ -92,6 +86,7 @@ const PatientForm = () => {
             label="Phone Number"
             placeholder="7888456666"
           />
+
           <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
         </form>
       </Form>
@@ -99,4 +94,4 @@ const PatientForm = () => {
   );
 };
 
-export default PatientForm;
+export default AppointmentForm;

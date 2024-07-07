@@ -1,11 +1,12 @@
-import PatientForm from "@/components/forms/PatientForm";
+import AppointmentForm from "@/components/forms/AppointmentForm";
+import { getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
-import Link from "next/link";
+import React from "react";
 
-export default function Home() {
+const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
+  const user = await getUser(userId);
   return (
     <div className="flex h-screen max-h-screen">
-      {/* Todo: otp verification/passkey */}
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-col flex-1 py-10">
           <Image
@@ -15,29 +16,26 @@ export default function Home() {
             alt="home-logo"
             className="mb-12 h-10 w-fit"
           />
-          <PatientForm />
 
-          <div className="text-14-regular mt-12 flex justify-between">
-            <Link href={"/login"} className="text-green-500">
-              Login
-            </Link>
+          <AppointmentForm user={user} />
+
+          <div className="flex justify-center items-center text-center">
             <p className="copyright py-12">
               All &copy; {new Date().getFullYear()} Reserved by spheri
               <span className="text-orange-500">soft</span>
             </p>
-            <Link href={"/?admin=true"} className="text-green-500">
-              Admin
-            </Link>
           </div>
         </div>
       </section>
       <Image
-        src={"/assets/images/onboarding-img.png"}
+        src={"/assets/images/appointment-img.png"}
         height={1000}
         width={1000}
         alt="form-img"
-        className="side-img max-w-[50%]"
+        className="side-img max-w-[390px] h-screen"
       />
     </div>
   );
-}
+};
+
+export default NewAppointment;
