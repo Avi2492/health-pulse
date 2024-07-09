@@ -116,3 +116,13 @@ export function getAppointmentSchema(type: string) {
       return ScheduleAppointmentSchema;
   }
 }
+
+// export const AppointmentFormValidation = z.object({
+//   primaryPhysician: z.string().min(2, "Select at least one doctor"),
+//   schedule: z.coerce.date(),
+//   reason: z.string().min(2, "Reason must be atleast 2 characters"),
+//   note: z.string().min(2, "Note muste be atleast 2 characters"),
+//   canellationReason: z
+//     .string()
+//     .min(2, "Cancellation Reason must be 2 characters"),
+// });
