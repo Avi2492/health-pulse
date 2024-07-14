@@ -1,11 +1,15 @@
 import PatientForm from "@/components/forms/PatientForm";
+import PasskeyModel from "@/components/PasskeyModel";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Home() {
+export default function Home({ searchParams }: SearchParamProps) {
+  const isAdmin = searchParams.admin === "true";
+
   return (
     <div className="flex h-screen max-h-screen">
-      {/* Todo: otp verification/passkey */}
+      {isAdmin && <PasskeyModel />}
+
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-col flex-1 py-10">
           <Image
