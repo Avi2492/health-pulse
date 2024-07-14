@@ -15,18 +15,26 @@ import { getAppointmentSchema } from "@/lib/validation";
 import { FormFeildType } from "./PatientForm";
 import { SelectItem } from "../ui/select";
 import { Doctors } from "@/constants";
-import { createAppointment } from "@/lib/actions/appointment.action";
+import {
+  createAppointment,
+  updateAppointment,
+} from "@/lib/actions/appointment.action";
+import { Appointment } from "@/types/appwrite.types";
 
 interface AppointmentProps {
   userId: string;
   patientId: string;
   type: "create" | "cancel" | "schedule";
+  appointment?: Appointment;
+  setOpen: (open: boolean) => void;
 }
 
 const AppointmentForm = ({
   userId,
   patientId,
   type = "create",
+  appointment,
+  setOpen,
 }: AppointmentProps) => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
@@ -82,6 +90,26 @@ const AppointmentForm = ({
             `/patients/${userId}/new-appointment/success?appointmentId=${appointment.$id}`
           );
         }
+      } else {
+        const appointmentToUpdate = {
+          userId,
+          appointmentId: appointment?.$id!,
+          patientId,
+          appointment: {
+            primaryPhysician: values?.primaryPhysician,
+            schedule: new Date(values?.schedule),
+            status: status as Status,
+            cancellationReason: values?.cancellationReason,
+          },
+          type,
+        };
+
+        const updatedAppointment = await updateAppointment(appointmentToUpdate);
+
+        if (updatedAppointment) {
+          setOpen && setOpen(false);
+          form.reset();
+        }
       }
     } catch (error: any) {
       console.log(error.message);
@@ -106,7 +134,7 @@ const AppointmentForm = ({
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-6 flex-1"
+          className="space-y-2 flex-1"
         >
           {type === "create" && (
             <section className="mb-12 space-y-4">
@@ -119,7 +147,7 @@ const AppointmentForm = ({
 
           {type !== "cancel" && (
             <>
-              <div className="flex flex-col gap-6 xl:flex-row">
+              <div className="flex flex-col gap-2 xl:flex-col">
                 <CustomFormFeild
                   feildType={FormFeildType.SELECT}
                   control={form.control}
