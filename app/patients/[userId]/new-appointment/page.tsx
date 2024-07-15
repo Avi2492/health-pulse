@@ -3,14 +3,11 @@ import { getPatient, getUser } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import React from "react";
 
-interface AppointmentProps {
-  setOpen: (open: boolean) => void;
-}
+// interface AppointmentProps {
+//   setOpen: (open: boolean) => void;
+// }
 
-const NewAppointment = async (
-  { params: { userId } }: SearchParamProps,
-  { setOpen }: AppointmentProps
-) => {
+const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
   const patient = await getPatient(userId);
   return (
     <div className="flex h-screen max-h-screen">
@@ -28,7 +25,7 @@ const NewAppointment = async (
             userId={userId}
             type="create"
             patientId={patient?.$id}
-            setOpen={setOpen}
+            // setOpen={setOpen}
           />
 
           <div className="flex justify-center items-center text-center">
