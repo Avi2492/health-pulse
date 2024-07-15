@@ -57,7 +57,7 @@ export const getRecentAppointmentsList = async () => {
 
     const counts = (appointments.documents as Appointment[]).reduce(
       (acc, appointment) => {
-        if (appointment.status === "scheduled") {
+        if (appointment.status === "schedule") {
           acc.scheduledCount += 1;
         } else if (appointment.status === "pending") {
           acc.pendingCount += 1;
