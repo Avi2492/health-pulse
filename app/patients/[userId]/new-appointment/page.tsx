@@ -1,5 +1,5 @@
 import AppointmentForm from "@/components/forms/AppointmentForm";
-import { getPatient, getUser } from "@/lib/actions/patient.actions";
+import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
 import React from "react";
 
@@ -22,10 +22,9 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
           />
 
           <AppointmentForm
+            patientId={patient?.$id}
             userId={userId}
             type="create"
-            patientId={patient?.$id}
-            // setOpen={setOpen}
           />
 
           <div className="flex justify-center items-center text-center">

@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import {
   Dialog,
@@ -26,9 +27,10 @@ const AppointmentModal = ({
   appointment,
 }: AppointmentModalProps) => {
   const [open, setOpen] = useState(false);
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button
           variant={"ghost"}
           className={`capitalize ${type === "schedule" && "text-green-500"} ${

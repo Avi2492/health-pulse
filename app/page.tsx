@@ -22,9 +22,9 @@ export default function Home({ searchParams }: SearchParamProps) {
           <PatientForm />
 
           <div className="text-14-regular mt-12 flex justify-between">
-            <Link href={"/login"} className="text-green-500">
+            {/* <Link href={"/login"} className="text-green-500">
               Login
-            </Link>
+            </Link> */}
             <p className="copyright py-12">
               All &copy; {new Date().getFullYear()} Reserved by spheri
               <span className="text-orange-500">soft</span>
