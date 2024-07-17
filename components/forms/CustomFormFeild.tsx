@@ -7,12 +7,11 @@ import {
   FormMessage,
 } from "../ui/form";
 import { Input } from "../ui/input";
-import { FormFeildType } from "./PatientForm";
 import { Control } from "react-hook-form";
 import Image from "next/image";
 import PhoneInput from "react-phone-number-input";
 import { E164Number } from "libphonenumber-js/core";
-import DatePicker from "react-datepicker";
+import ReactDatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
 import {
@@ -23,6 +22,16 @@ import {
 } from "../ui/select";
 import { Textarea } from "../ui/textarea";
 import { Checkbox } from "../ui/checkbox";
+
+export enum FormFeildType {
+  INPUT = "input",
+  TEXTAREA = "textarea",
+  PHONE_INPUT = "phoneInput",
+  CHECKBOX = "checkbox",
+  DATE_PICKER = "datepicker",
+  SELECT = "select",
+  SKELETON = "skeleton",
+}
 
 interface CustomFormFeildProps {
   control: Control<any>;
@@ -105,7 +114,7 @@ const RenderInput = ({
             className="ml-2"
           />
           <FormControl>
-            <DatePicker
+            <ReactDatePicker
               selected={field.value}
               onChange={(date) => field.onChange(date)}
               dateFormat={dateFormat ?? "mm/dd/yyyy"}

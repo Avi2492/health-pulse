@@ -6,13 +6,12 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { z } from "zod";
 import { Form } from "@/components/ui/form";
-import CustomFormFeild from "./CustomFormFeild";
+import CustomFormFeild, { FormFeildType } from "./CustomFormFeild";
 import "react-phone-number-input/style.css";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { getAppointmentSchema } from "@/lib/validation";
 
-import { FormFeildType } from "./PatientForm";
 import { SelectItem } from "../ui/select";
 import { Doctors } from "@/constants";
 import {

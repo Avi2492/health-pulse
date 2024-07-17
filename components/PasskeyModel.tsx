@@ -1,6 +1,8 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
+import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
+import React, { useEffect, useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -18,10 +20,6 @@ import {
 } from "@/components/ui/input-otp";
 import { decryptKey, encryptKey } from "@/lib/utils";
 
-import Image from "next/image";
-import { usePathname, useRouter } from "next/navigation";
-import React, { useEffect, useState } from "react";
-
 const PasskeyModel = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -38,7 +36,7 @@ const PasskeyModel = () => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
 
     if (pathname) {
-      if (accessKey === process.env.ADMIN_PASSKEY!.toString()) {
+      if (accessKey === process.env.ADMIN_PASSKEY!) {
         setOpen(false);
         router.push("/admin");
       } else {
@@ -52,7 +50,7 @@ const PasskeyModel = () => {
   ) => {
     e.preventDefault();
 
-    if (passkey === process.env.NEXT_PUBLIC_ADMIN_PASSKEY) {
+    if (passkey === process.env.ADMIN_PASSKEY) {
       const encryptedKey = encryptKey(passkey);
 
       localStorage.setItem("accessKey", encryptedKey);

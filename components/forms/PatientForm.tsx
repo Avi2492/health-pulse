@@ -4,23 +4,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { Form } from "@/components/ui/form";
-import CustomFormFeild from "./CustomFormFeild";
+import CustomFormFeild, { FormFeildType } from "./CustomFormFeild";
 import "react-phone-number-input/style.css";
 import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { UserFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
-
-export enum FormFeildType {
-  INPUT = "input",
-  TEXTAREA = "textarea",
-  PHONE_INPUT = "phoneInput",
-  CHECKBOX = "checkbox",
-  DATE_PICKER = "datepicker",
-  SELECT = "select",
-  SKELETON = "skeleton",
-}
 
 const PatientForm = () => {
   const router = useRouter();
@@ -35,25 +25,26 @@ const PatientForm = () => {
     },
   });
 
-  async function onSubmit({
-    name,
-    email,
-    phone,
-  }: z.infer<typeof UserFormValidation>) {
+  async function onSubmit(values: z.infer<typeof UserFormValidation>) {
     setIsLoading(true);
+
     try {
       const userData = {
-        name,
-        email,
-        phone,
+        name: values.name,
+        email: values.email,
+        phone: values.phone,
       };
+
       const newUser = await createUser(userData);
+
       if (newUser) {
         router.push(`/patients/${newUser.$id}/register`);
       }
     } catch (error: any) {
       console.log(error.message);
     }
+
+    setIsLoading(false);
   }
 
   return (

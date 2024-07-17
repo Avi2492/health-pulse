@@ -1,7 +1,6 @@
 import AppointmentForm from "@/components/forms/AppointmentForm";
 import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
-import React from "react";
 
 // interface AppointmentProps {
 //   setOpen: (open: boolean) => void;
