@@ -1,3 +1,4 @@
+import AppLogo from "@/components/AppLogo";
 import PatientForm from "@/components/forms/PatientForm";
 import PasskeyModel from "@/components/PasskeyModel";
 import Image from "next/image";
@@ -12,13 +13,17 @@ export default function Home({ searchParams }: SearchParamProps) {
 
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-col flex-1 py-10">
-          <Image
+          {/* <Image
             src={"/assets/icons/logo-full.svg"}
             height={1000}
             width={1000}
             alt="home-logo"
             className="mb-12 h-10 w-fit"
-          />
+          /> */}
+
+          <div className="mb-12">
+            <AppLogo />
+          </div>
           <PatientForm />
 
           <div className="text-14-regular mt-12 flex justify-between">

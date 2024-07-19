@@ -1,3 +1,4 @@
+import AppLogo from "@/components/AppLogo";
 import AppointmentForm from "@/components/forms/AppointmentForm";
 import { getPatient } from "@/lib/actions/patient.actions";
 import Image from "next/image";
@@ -12,13 +13,17 @@ const NewAppointment = async ({ params: { userId } }: SearchParamProps) => {
     <div className="flex h-screen max-h-screen">
       <section className="remove-scrollbar container">
         <div className="sub-container max-w-[860px] flex-col flex-1 py-10">
-          <Image
+          {/* <Image
             src={"/assets/icons/logo-full.svg"}
             height={1000}
             width={1000}
             alt="home-logo"
             className="mb-12 h-10 w-fit"
-          />
+          /> */}
+
+          <div className="mb-12">
+            <AppLogo />
+          </div>
 
           <AppointmentForm
             patientId={patient?.$id}

@@ -1,4 +1,5 @@
 /* eslint-disable react/no-unescaped-entities */
+import AppLogo from "@/components/AppLogo";
 import { Button } from "@/components/ui/button";
 import { Doctors } from "@/constants";
 import { getAppointmentDetails } from "@/lib/actions/appointment.action";
@@ -22,13 +23,7 @@ const SuccessPage = async ({
     <div className="flex h-screen max-h-screen px-[5%]">
       <div className="success-img">
         <Link href={"/"}>
-          <Image
-            src={"/assets/icons/logo-full.svg"}
-            width={1000}
-            height={1000}
-            alt="success-logo"
-            className="h-10 w-fit"
-          />
+          <AppLogo />
         </Link>
         <section className="flex flex-col items-center">
           <Image
