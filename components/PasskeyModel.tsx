@@ -36,7 +36,7 @@ const PasskeyModel = () => {
     const accessKey = encryptedKey && decryptKey(encryptedKey);
 
     if (pathname) {
-      if (accessKey === process.env.ADMIN_PASSKEY!) {
+      if (accessKey === process.env.ADMIN_PASSKEY!.toString()) {
         setOpen(false);
         router.push("/admin");
       } else {
